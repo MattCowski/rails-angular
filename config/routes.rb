@@ -18,20 +18,23 @@ Shareup::Application.routes.draw do
   root to: 'welcome#index'
 
 
-  # initial routes setup:
-  namespace :api do
-    resources :shares
-  end
+  # # initial routes setup:
+  # namespace :api do
+  #   resources :shares
+  # end
+  
+  # root to: 'welcome#index'
+  # get '/dashboard' => 'welcome#dashboard'
 
-  devise_for :users,
-    :controllers => {
-      :omniauth_callbacks => "users/omniauth_callbacks"
-    }
+  # devise_for :users,
+  #   :controllers => {
+  #     :omniauth_callbacks => "users/omniauth_callbacks"
+  #   }
 
-  devise_scope :user do
-    get '/api/current_user' => 'users/sessions#show_current_user', as: 'show_current_user'
-    post '/api/check/is_user' => 'users/users#is_user', as: 'is_user'
-  end
+  # devise_scope :user do
+  #   get '/api/current_user' => 'users/sessions#show_current_user', as: 'show_current_user'
+  #   post '/api/check/is_user' => 'users/users#is_user', as: 'is_user'
+  # end
 
   # devise_scope :user do
   #   get '/api/current_user' => 'users/sessions#show_current_user'
@@ -41,8 +44,6 @@ Shareup::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root to: 'welcome#index'
-  get '/dashboard' => 'welcome#dashboard'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
