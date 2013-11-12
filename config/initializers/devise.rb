@@ -231,6 +231,8 @@ Devise.setup do |config|
   config.omniauth :twitter, AppConfig.twitter['clientId'],
                               AppConfig.twitter['clientSecret']
 
+# enable the token_authentication_key from migrations
+  config.token_authentication_key = :auth_token
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
