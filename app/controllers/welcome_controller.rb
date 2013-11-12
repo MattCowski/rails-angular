@@ -1,8 +1,6 @@
-# handle public requests and serve HTML
 class WelcomeController < ApplicationController
-	# run auth helper only on dashboard route
   before_filter :authenticate_user!, except: [:index]
-  layout :choose_layout
+  layout :choose_layout 
 
   def index
   end

@@ -1,9 +1,9 @@
 defaults: &defaults
   client:
-    origin: http://localhost
+    origin: https://localhost
   twitter:
-    clientId: 'kS3M8Z4NuwqhAVoqSeDA'
-    clientSecret: 'G8gwl2fyeOKEY27LWhevxvC5HQ7QSD4CYAlHHabqE'
+    clientId: "IDBcwb1OeGCcL2YNqHc5FQ"
+    clientSecret: "r0YYSzfh227qccPN3QjRGgJTWQLnjilLLq4bMbP1qk"
 
 development:
   <<: *defaults

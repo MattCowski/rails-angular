@@ -1,11 +1,8 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  # method handles all Omniauth callbacks
   def twitter
-    # takes Twitter info and parses into parts
-    auth_hash = request.env["omniauth.auth"]
-    uid = auth_hash['uid']
-    name = auth_hash['info']['name']
-    # check db if user already auth using twitter
+    auth_hash = env["omniauth.auth"]
+    uid = auth_hash['extra']['user_hash']['id']
+    name = auth_hash['user_info']['name']
     auth = Authorization.find_by_provider_and_uid("twitter", uid)
     if auth
       ## We already know about this user who is signing in with
@@ -28,10 +25,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       ## Finally, create an authorization for the current user
       unless auth = user.authorizations.find_by_provider("twitter")
-        auth = user.authorizations.build(provider: "twitter", uid: uid)
+        auth = user.authorizations.build(provider: "twitter")
         user.authorizations << auth
       end
-      # Save the authorization with the latest auth hash data
       auth.update_attributes({
           uid: uid,
           token: auth_hash['credentials']['token'],
@@ -39,12 +35,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           name: name,
           url: "http://twitter.com/#{name}"
         })
-    end
-    # redirect the user
-    if user
-      sign_in_and_redirect user, :event => :authentication
-    else
-      redirect_to :new_user_registration
+      ## Return user
+      user
     end
   end
 end

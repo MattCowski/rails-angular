@@ -1,9 +1,14 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+<div class="row">
+  <div ng-repeat="article in articles | orderBy:publishedDate:false">
+    <div class="article-listing-element row">
+      <div class="span9">
+        <h2><a href="{{ article.link }}" title="{{ article.title }}">{{ article.title }}</a></h2>
+        <p>{{ article.publishedDate | toDate |date:'M/d/yy h:mm:ss a' }}</p>
+      </div>
+      <div class="span2">
+        <a share ng-model="article">
+        Share</a>
+      </div>
+    </div>
+  </div>
 </div>

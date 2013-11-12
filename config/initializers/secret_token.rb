@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Shareup::Application.config.secret_key_base = '08538c49b922ca04d89ddb74eb46b6e85588d1232cb5452418008f9efda53808f9f6969a73b54e26b016596a0255ac8e7a8a2aca28b65cf6b52a4ee98f95c37a'
+Shareup::Application.config.secret_key_base = 'b6d35f9675d9ccfa1bd1b5f152ecd3416720ca8aa488048e7869aa5bf9eb187c213cef450ebc290fe14994b026afeb971064e15880ed1626754647381956d331'

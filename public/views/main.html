@@ -1,0 +1,9 @@
+<div class="container">
+  <ul class="row">
+    <li ng-repeat="article in articles | orderBy:publishedDate:false">
+      <div data-share="" ng-model="article"></div>
+      <h2><a href="{{ article.link }}" title="{{ article.title }}">{{ article.title }}</a></h2>
+      <p>{{ article.contentSnippet }}</p>
+    </li>
+  </ul>  
+</div>

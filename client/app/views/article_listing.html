@@ -1,0 +1,10 @@
+<div class="article-listing-element row">
+  <div class="span9">
+    <h2><a href="{{ ngModel.link }}" title="{{ ngModel.title }}">{{ ngModel.title }}</a></h2>
+    <p>{{ ngModel.publishedDate | toDate |date:'M/d/yy h:mm:ss a' }}</p>
+  </div>
+  <div class="span2">
+    <a share ng-model="ngModel">
+    Share</a>
+  </div>
+</div>

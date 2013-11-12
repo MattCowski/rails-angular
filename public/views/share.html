@@ -1,0 +1,11 @@
+<div data-ng-hide="showShareBox">
+  <a ng-click="showShareBox=!showShareBox">Share with a friend</a>
+</div>
+<div data-ng-show="showShareBox">
+  <form ng-submit="showShareBox=!showShareBox;share(newShare.recipient, article)" name="shareForm">
+    <label>Share with a friend</label>
+    <input type="text" placeholder="email or username" data-ng-model="newShare.recipient" is-user-or-email="">
+    <input type="button" class="btn" value="Cancel" data-ng-click="showShareBox = !showShareBox">
+    <input type="submit" class="btn" ng-disabled="shareForm.$invalid" value="Share">
+  </form>
+</div>
