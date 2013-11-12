@@ -6,7 +6,7 @@ Shareup::Application.routes.draw do
       :controllers => {
         omniauth_callbacks: "users/omniauth_callbacks",
         registrations: "users/registrations",
-        # sessions: "users/sessions"
+        sessions: "users/sessions"
       }
 
     devise_scope :user do
