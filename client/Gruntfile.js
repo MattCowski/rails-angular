@@ -1,4 +1,4 @@
-// Generated on 2013-11-12 using generator-angular 0.5.1
+// Generated on 2013-11-13 using generator-angular 0.5.1
 'use strict';
 
 // # Globbing
@@ -6,8 +6,6 @@
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
-grunt.loadNpmTasks('grunt-connect-proxy');
-var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
@@ -66,23 +64,8 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
-      proxies: [
-        {
-          context: '/api',
-          host: 'localhost',
-          port: 3000
-          // https: false,
-          // changeOrigin: false,
-          // xforward: false
-        }
-      ],
       livereload: {
         options: {
-          middleware: function (connect) {
-            return [
-            proxySnippet
-            ];
-          },
           open: true,
           base: [
             '.tmp',
@@ -348,7 +331,6 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
-      'configureProxies',
       'autoprefixer',
       'connect:livereload',
       'watch'
@@ -357,7 +339,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
-    'configureProxies',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
