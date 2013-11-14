@@ -9,10 +9,10 @@ Shareup::Application.routes.draw do
         sessions: "users/sessions"
       }
 
-    # devise_scope :user do
-    #   post '/check/is_user' => 'users/users#is_user', as: 'is_user'
+    devise_scope :user do
+      post '/check/is_user' => 'users/users#is_user', as: 'is_user'
     #   post '/current_user' => 'users/sessions#get_current_user'
-    # end
+    end
   end
   get '/dashboard' => 'welcome#dashboard'
   root to: 'welcome#index'
