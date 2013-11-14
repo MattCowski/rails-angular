@@ -1,6 +1,6 @@
 Shareup::Application.routes.draw do
   scope '/api' do
-    # resources :shares
+    resources :shares
 
     devise_for :users,
       :controllers => {
