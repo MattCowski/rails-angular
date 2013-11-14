@@ -11,7 +11,7 @@ Shareup::Application.routes.draw do
 
     devise_scope :user do
       post '/check/is_user' => 'users/users#is_user', as: 'is_user'
-    #   post '/current_user' => 'users/sessions#get_current_user'
+      post '/current_user' => 'users/sessions#get_current_user'
     end
   end
   get '/dashboard' => 'welcome#dashboard'
