@@ -1,4 +1,4 @@
-// Generated on 2013-11-14 using generator-angular 0.6.0-rc.1
+// Generated on 2013-11-13 using generator-angular 0.6.0-rc.1
 'use strict';
 
 // # Globbing
@@ -6,16 +6,22 @@
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+var mountFolder = function (connect, dir) {
+  return connect.static(require('path').resolve(dir));
+};
 
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
+  
+  grunt.loadNpmTasks('grunt-connect-proxy');
 
   grunt.initConfig({
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
+      dist: 'dist' 
     },
     watch: {
       coffee: {
@@ -64,13 +70,31 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+      proxies: [
+        {
+          context: '/api',
+          host: 'localhost',
+          port: 3000
+          // https: false,
+          // changeOrigin: false,
+          // xforward: false
+        }
+      ],
       livereload: {
         options: {
           open: true,
           base: [
             '.tmp',
             '<%= yeoman.app %>'
-          ]
+          ],
+          middleware: function (connect) {
+            return [
+              proxySnippet,
+              //lrSnippet,
+              mountFolder(connect, '.tmp'),
+              mountFolder(connect, 'app')
+            ];
+          }
         }
       },
       test: {
@@ -333,6 +357,7 @@ module.exports = function (grunt) {
       'clean:server',
       'concurrent:server',
       'autoprefixer',
+      'configureProxies',
       'connect:livereload',
       'watch'
     ]);
@@ -340,6 +365,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'configureProxies',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
